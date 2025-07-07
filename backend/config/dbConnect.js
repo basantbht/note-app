@@ -1,9 +1,12 @@
 const { default: mongoose } = require("mongoose");
-const MONGO_URL = process.env.MONGO_URL;
 // MONGO_URL = "mongodb://localhost:27017/note-app"
 
-const connectToMongoDB = async () => {
-    await mongoose.connect(MONGO_URL);
-}
+const connectToMongoDB = () => {
+  const MONGO_URL = process.env.MONGO_URL;
+
+  mongoose.connect(MONGO_URL).then(() => {
+    console.log("MongoDB connected");
+  });
+};
 
 module.exports = connectToMongoDB;
