@@ -1,21 +1,30 @@
 const express = require("express");
 const dotenv = require("dotenv");
+dotenv.config();
 
-const noteRouter = require("./routes/noteRouter");
-const userRouter = require("./routes/userRouter");
+const cors = require("cors");
+const cookieParser = require("cookie-parser");
+
+const authRouter = require("./routes/authRouters");
 const connectToMongoDB = require("./config/dbConnect");
 
 const app = express();
 dotenv.config();
-const PORT = 8000;
+
+const PORT = process.env.PORT || 8000;
+connectToMongoDB();
 
 app.use(express.json());
+app.use(cookieParser());
+app.use(cors({credentials: true}))
 app.use(express.urlencoded({extended: true}));
 
-app.use(noteRouter);
-app.use(userRouter);
+// API Endpoints
+app.get('/', (req,res) => {
+    res.send("API Working");
+})
 
-connectToMongoDB();
+app.use("/api/auth",authRouter);
 
 
 app.listen(PORT, () => {
