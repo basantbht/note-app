@@ -88,4 +88,25 @@ const loginUser = async (req,res) => {
 
 }
 
-module.exports = {registerUser,loginUser};
+// Get user
+const getUser = async (req,res) => {
+  const {user} = req.user;
+
+  const isUser = await userModel.findOne({_id: user._id});
+
+  if(!isUser){
+    return res.sendStatus(401);
+  }
+
+  return res.json({
+    user: {
+      fullName: isUser.fullName,
+      email: isUser.email,
+      _id: isUser._id,
+      createdOn: isUser.createdOn,
+    },
+    message: "",
+  });
+}
+
+module.exports = {registerUser,loginUser,getUser};
