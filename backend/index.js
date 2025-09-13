@@ -10,8 +10,8 @@ const express = require("express");
 const cors = require("cors");
 const app = express();
 
-const {authentication} = require("./utilities");
 const userRouter = require("./routes/userRoute");
+const noteRouter = require("./routes/noteRoute");
 
 app.use(express.json());
 
@@ -22,6 +22,8 @@ app.use(
 );
 
 app.use("/",userRouter);
+app.use("/",noteRouter);
+
 app.listen(8000);
 
 module.exports = app;
