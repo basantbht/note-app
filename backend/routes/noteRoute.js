@@ -1,5 +1,5 @@
 const express = require("express");
-const { addNotes, editNotes, allNotes, deleteNote, updateIsPinned } = require("../controllers/noteController");
+const { addNotes, editNotes, allNotes, deleteNote, updateIsPinned, searchNote } = require("../controllers/noteController");
 const { authenticateToken } = require("../utilities");
 const noteRouter = express.Router();
 
@@ -8,5 +8,6 @@ noteRouter.put("/edit-note/:noteId",authenticateToken,editNotes);
 noteRouter.get("/get-all-notes",authenticateToken,allNotes);
 noteRouter.delete("/delete-note/:noteId",authenticateToken,deleteNote);
 noteRouter.put("/update-note-pinned/:noteId",authenticateToken,updateIsPinned);
+noteRouter.get("/search-notes/",authenticateToken,searchNote);
 
 module.exports = noteRouter;

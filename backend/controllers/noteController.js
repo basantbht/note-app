@@ -157,4 +157,36 @@ const noteId = req.params.noteId;
   }
 };
 
-module.exports = { addNotes, editNotes, allNotes,deleteNote,updateIsPinned };
+// Search note
+const searchNote = async (req, res) => {
+  const { user } = req.user;
+  const {query} = req.query;
+
+  if (!query) {
+      return res.status(404).json({ error: true, message: "Search query is required" });
+    }
+
+  try {
+    const matchingNotes = await noteModel.find({ 
+      userId: user._id,
+    
+      $or: [
+        {title: {$regex: new RegExp(query, "i")}},
+        {content: {$regex: new RegExp(query, "i")}},
+      ]
+    });
+
+    return res.json({
+      error: false,
+      notes: matchingNotes,
+      message: "Note matching the search query retrieved successfully",
+    });
+  } catch (error) {
+    console.log(error);
+     return res
+      .status(500)
+      .json({ error: true, messsage: error.message });
+  }
+};
+
+module.exports = { addNotes, editNotes, allNotes,deleteNote,updateIsPinned,searchNote };
