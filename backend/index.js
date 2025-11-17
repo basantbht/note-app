@@ -26,4 +26,8 @@ app.use("/",noteRouter);
 
 app.listen(8000);
 
+app.get("/", (req,res) => {
+    res.send("API working");
+})
+
 module.exports = app;
