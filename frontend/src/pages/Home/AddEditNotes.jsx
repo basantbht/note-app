@@ -90,7 +90,7 @@ const AddEditNotes = ({ noteData, type, getAllNotes, onClose, showToastMessage }
         <label className="input-label">TITLE</label>
         <input
           type="text"
-          className="text-2xl text-slate-950 outline-none"
+          className="text-2xl text-slate-950 border border-gray-400 px-3 py-1.5 rounded outline-none"
           placeholder="Go to gym at 5"
           value={title}
           onChange={({ target }) => setTitle(target.value)}
@@ -101,7 +101,7 @@ const AddEditNotes = ({ noteData, type, getAllNotes, onClose, showToastMessage }
         <label className="input-label">CONTENT</label>
         <textarea
           type="text"
-          className="text-sm text-slate-950 outline-none bg-slate-50 p-2 rounded"
+          className="text-sm text-slate-950 outline-none border border-gray-400 bg-slate-50 p-2 h-40 rounded"
           placeholder="Content"
           rows={10}
           value={content}
@@ -117,7 +117,7 @@ const AddEditNotes = ({ noteData, type, getAllNotes, onClose, showToastMessage }
 
       {error && <p className="text-red-500 text-xs pt-4">{error}</p>}
 
-      <button className="btn-primary font-medium mt-5 p-3" onClick={handleAddNote}>
+      <button className="btn-primary font-medium mt-5 p-3 cursor-pointer" onClick={handleAddNote}>
         {type === "edit" ? "UPDATE" : "ADD"}
       </button>
     </div>

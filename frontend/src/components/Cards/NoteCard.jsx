@@ -18,12 +18,12 @@ const NoteCard = ({
     <div className="border border-gray-700 rounded p-4 bg-white hover:shadow-xl transition-all ease-in-out">
       <div className="flex items-center justify-between">
         <div>
-          <h6 className="text-sm font-medium">{title}</h6>
-          <span className="text-xs text-slate-800">{moment(date).format('Do MMM YYYY')}</span>
+          <h6 className="text-xl font-medium">{title}</h6>
+          <span className="text-sm mt-1 text-slate-800">{moment(date).format('Do MMM YYYY')}</span>
         </div>
 
         <MdOutlinePushPin
-          className={`icon-btn hover:text-primary ${isPinned ? "text-primary" : "text-slate-400"}`}
+          className={`icon-btn cursor-pointer hover:text-primary ${isPinned ? "text-primary" : "text-slate-800"}`}
           onClick={onPinNote}
         />
       </div>
@@ -35,12 +35,12 @@ const NoteCard = ({
 
         <div className="flex items-center gap-2">
           <MdCreate
-            className="icon-btn text-slate-800 hover:text-green-600"
+            className="icon-btn cursor-pointer text-slate-800 hover:text-green-600"
             onClick={onEdit}
           />
 
           <MdDelete
-            className="icon-btn text-slate-800 hover:text-red-500"
+            className="icon-btn cursor-pointer text-slate-800 hover:text-red-500"
             onClick={onDelete}
           />
         </div>
